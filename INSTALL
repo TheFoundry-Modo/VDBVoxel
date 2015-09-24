@@ -1,0 +1,13 @@
+Installing VDBVoxel Plugin
+==================
+
+Requirements
+------------
+- OpenVDB 3.0 and its all dependences
+  http://www.openvdb.org/
+
+- MODO software and MODO C++ SDK
+  https://www.thefoundry.co.uk/products/modo/
+  http://sdk.luxology.com/
+
+Compilers that work for OpenVDB 3.0 should work for this plugin as well.

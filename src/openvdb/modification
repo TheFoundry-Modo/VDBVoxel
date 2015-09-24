@@ -1,0 +1,1 @@
+Partially move the source code from the CC file (RenderModules.cc) to the H file (RenderModules.h) to be publicly used.

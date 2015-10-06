@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <BOOST_ROOT>C:\dev\Temp\boost</BOOST_ROOT>
+    <MODO_SDK>C:\dev\Temp\SDK</MODO_SDK>
+    <OPENVDB>C:\dev\Temp\openvdb</OPENVDB>
+    <TBB>C:\dev\Temp\tbb44_20150728oss_win\tbb44_20150728oss</TBB>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="BOOST_ROOT">
+      <Value>$(BOOST_ROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MODO_SDK">
+      <Value>$(MODO_SDK)</Value>
+    </BuildMacro>
+    <BuildMacro Include="OPENVDB">
+      <Value>$(OPENVDB)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TBB">
+      <Value>$(TBB)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

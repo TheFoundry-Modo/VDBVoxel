@@ -136,9 +136,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="$(MODO_SDK)\common\clean.cpp" />
     <ClCompile Include="$(MODO_SDK)\common\cwrap.cpp" />
     <ClCompile Include="$(MODO_SDK)\common\lxu_attrdesc.cpp" />

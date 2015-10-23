@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <BOOST_ROOT>C:\dev\Temp\boost</BOOST_ROOT>
-    <MODO_SDK>C:\dev\Temp\SDK</MODO_SDK>
-    <OPENVDB>C:\dev\Temp\openvdb</OPENVDB>
-    <TBB>C:\dev\Temp\tbb44_20150728oss_win\tbb44_20150728oss</TBB>
+    <BOOST_ROOT>\Please_modify_to_the_path_of_boost\</BOOST_ROOT>
+    <MODO_SDK>\Please_modify_to_the_path_of_modo_sdk\</MODO_SDK>
+    <OPENVDB>\Please_modify_to_the_path_of_openvdb\</OPENVDB>
+    <TBB>\Please_modify_to_the_path_of_tbb\</TBB>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

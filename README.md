@@ -7,7 +7,7 @@ As prerequisites, you have to build [OpenVDB](http://www.openvdb.org/) firstly a
 
 ### Build with Visual Studio 2010/2013
 
-The master repository provides a Visual Studio 2010/2013 project file, which includes two projects: *common* and *VDBVoxel*. In order to make them work for you, you may need to:
+The master repository provides Visual Studio 2010/2013 projects, each of which includes two projects: *common* and *VDBVoxel*. In order to make them work for you, you may need to:
 
 1. Change the including path macros inside the file *\build\Vistual Studio\PropertySheet.props*, which is a XML file that can be loaded by common text editors and Visual Studio. You can specify the root path of the directories of TBB, OPENVDB, MODO SDK and BOOST by editing the corresponding *UserMacros* in the file.
 

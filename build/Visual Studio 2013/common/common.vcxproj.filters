@@ -18,70 +18,70 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\clean.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\clean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\cwrap.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\cwrap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_attrdesc.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_attrdesc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_attributes.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_attributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_command.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_deform.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_deform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_format.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_format.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_geometry.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_log.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_math.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_message.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_modifier.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_modifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_parser.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_prefvalue.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_prefvalue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_queries.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_queries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_scene.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_select.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_select.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_simd.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_simd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_surface.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_surface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_tableau.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_tableau.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\lxu_vector.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\lxu_vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\dev\Temp\SDK\common\util.cpp">
+    <ClCompile Include="$(MODO_SDK)\common\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

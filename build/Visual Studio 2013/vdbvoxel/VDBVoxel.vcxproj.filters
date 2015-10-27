@@ -15,128 +15,125 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\ClearCacheCommand.h">
+    <ClInclude Include="..\..\..\src\ClearCacheCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\common.h">
+    <ClInclude Include="..\..\..\src\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\FileLoadCommand.h">
+    <ClInclude Include="..\..\..\src\FileLoadCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\OpenVDBCreation.h">
+    <ClInclude Include="..\..\..\src\OpenVDBCreation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\OpenVDBItem.h">
+    <ClInclude Include="..\..\..\src\OpenVDBItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ParticleAttach.h">
+    <ClInclude Include="..\..\..\src\ParticleAttach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\PopupCommand.h">
+    <ClInclude Include="..\..\..\src\PopupCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\SourceItem.h">
+    <ClInclude Include="..\..\..\src\SourceItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VDBVoxelHash.h">
+    <ClInclude Include="..\..\..\src\VDBVoxelHash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VDBVoxelItem.h">
+    <ClInclude Include="..\..\..\src\VDBVoxelItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VDBVoxelModifier.h">
+    <ClInclude Include="..\..\..\src\VDBVoxelModifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Verification.h">
+    <ClInclude Include="..\..\..\src\Verification.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItem.h">
+    <ClInclude Include="..\..\..\src\VoxelItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemBin.h">
+    <ClInclude Include="..\..\..\src\VoxelItemBin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemCache.h">
+    <ClInclude Include="..\..\..\src\VoxelItemCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemChannel.h">
+    <ClInclude Include="..\..\..\src\VoxelItemChannel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemElement.h">
+    <ClInclude Include="..\..\..\src\VoxelItemElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemInstance.h">
+    <ClInclude Include="..\..\..\src\VoxelItemInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemPart.h">
+    <ClInclude Include="..\..\..\src\VoxelItemPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemPref.h">
+    <ClInclude Include="..\..\..\src\VoxelItemPref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\VoxelItemSurface.h">
+    <ClInclude Include="..\..\..\src\VoxelItemSurface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\ClearCacheCommand.cpp">
+    <ClCompile Include="..\..\..\src\ClearCacheCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\FileLoadCommand.cpp">
+    <ClCompile Include="..\..\..\src\FileLoadCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\OpenVDBCreation.cpp">
+    <ClCompile Include="..\..\..\src\OpenVDBCreation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\OpenVDBGrid.cpp">
+    <ClCompile Include="..\..\..\src\OpenVDBGrid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\OpenVDBItem.cpp">
+    <ClCompile Include="..\..\..\src\OpenVDBItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ParticleAttach.cpp">
+    <ClCompile Include="..\..\..\src\ParticleAttach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\PopupCommand.cpp">
+    <ClCompile Include="..\..\..\src\PopupCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VDBVoxelHash.cpp">
+    <ClCompile Include="..\..\..\src\VDBVoxelHash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VDBVoxelItem.cpp">
+    <ClCompile Include="..\..\..\src\VDBVoxelItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItem.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemBin.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemBin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemCache.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemCache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemElement.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemInstance.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemInstance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemPart.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemPart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemPref.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemPref.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\VoxelItemSurface.cpp">
+    <ClCompile Include="..\..\..\src\VoxelItemSurface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\VoxelItem.cfg">
+    <None Include="..\..\..\src\VoxelItem.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

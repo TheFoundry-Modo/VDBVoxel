@@ -71,6 +71,7 @@ OpenVDBGrid::OpenVDBGrid (
 
 	m_isSurfaceReady = false;
 	m_isSampleReady = false;
+	m_meshAABBValid = false;
 	
 }
 
@@ -98,6 +99,7 @@ OpenVDBGrid::OpenVDBGrid (
 
 	m_isSurfaceReady = false;
 	m_isSampleReady = false;
+	m_meshAABBValid = false;
 }
 
 OpenVDBGrid::OpenVDBGrid (
@@ -125,6 +127,7 @@ OpenVDBGrid::OpenVDBGrid (
 
 	m_isSurfaceReady = false;
 	m_isSampleReady = false;
+	m_meshAABBValid = false;
 }
 OpenVDBGrid::~OpenVDBGrid ()
 {
@@ -139,6 +142,7 @@ OpenVDBGrid::~OpenVDBGrid ()
 
 	m_isSurfaceReady = false;
 	m_isSampleReady = false;
+	m_meshAABBValid = false;
 }
 
 	void
@@ -161,6 +165,16 @@ OpenVDBGrid::computAABB (
 		bbox[3] = max.x ();
 		bbox[4] = max.y ();
 		bbox[5] = max.z ();
+
+		// Voxel Bounding Box may not be a BB for generated mesh, so we use mesh BB if there is mesh
+		if (m_meshAABBValid) {
+			if (m_meshAABB[0] < bbox[0]) bbox[0] = m_meshAABB[0];
+			if (m_meshAABB[1] < bbox[1]) bbox[1] = m_meshAABB[1];
+			if (m_meshAABB[2] < bbox[2]) bbox[2] = m_meshAABB[2];
+			if (m_meshAABB[3] > bbox[3]) bbox[3] = m_meshAABB[3];
+			if (m_meshAABB[4] > bbox[4]) bbox[4] = m_meshAABB[4];
+			if (m_meshAABB[5] > bbox[5]) bbox[5] = m_meshAABB[5];
+		}
 	}
 }
 
@@ -265,6 +279,9 @@ OpenVDBGrid::genMesh ()
 		m_floatGridPtr->getGridClass () == GRID_LEVEL_SET ? 0.0 : 0.01);
 	mesher (*m_floatGridPtr);
 
+	if (mesher.pointListSize() == 0)
+		return;
+
 	// Copy points and generate point normals.
 	m_meshPoints.resize (mesher.pointListSize () * 3);
 	m_pointNormals.resize (mesher.pointListSize () * 3);
@@ -274,12 +291,29 @@ OpenVDBGrid::genMesh ()
 	math::GenericMap map (m_floatGridPtr->transform ());
 	Coord ijk;
 
+	const Vec3s& initp = mesher.pointList ()[0];
+	m_meshAABB[0] = initp[0];
+	m_meshAABB[1] = initp[1];
+	m_meshAABB[2] = initp[2];
+	m_meshAABB[3] = initp[0];
+	m_meshAABB[4] = initp[1];
+	m_meshAABB[5] = initp[2];
+
 	for (Index64 n = 0, i = 0, N = mesher.pointListSize (); n < N; ++n) {
 		const Vec3s& p = mesher.pointList ()[n];
 		m_meshPoints[i++] = p[0];
 		m_meshPoints[i++] = p[1];
 		m_meshPoints[i++] = p[2];
+
+		if (m_meshAABB[0] > p[0]) m_meshAABB[0] = p[0];
+		if (m_meshAABB[1] > p[1]) m_meshAABB[1] = p[1];
+		if (m_meshAABB[2] > p[2]) m_meshAABB[2] = p[2];
+		if (m_meshAABB[3] < p[0]) m_meshAABB[3] = p[0];
+		if (m_meshAABB[4] < p[1]) m_meshAABB[4] = p[1];
+		if (m_meshAABB[5] < p[2]) m_meshAABB[5] = p[2];
 	}
+
+	m_meshAABBValid = true;
 
 	// Copy primitives
 	tools::PolygonPoolList& polygonPoolList = mesher.polygonPoolList ();

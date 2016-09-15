@@ -134,7 +134,7 @@ public:
 		ILxUnknownID	 itemChanRead,
 		ILxUnknownID	 viewStrokeDraw,
 		int		 selectionFlags,
-		LXtVector	 itemColor)	LXx_OVERRIDE;
+		const LXtVector	 itemColor)	LXx_OVERRIDE;
 	// StringTag
 		LxResult
 	stag_Get (
@@ -170,7 +170,7 @@ public:
 	sil_ChannelValue (
 		const char		*action,
 		ILxUnknownID		 itemObj,
-		unsigned		 channel);
+		unsigned		 channel)	LXx_OVERRIDE;
 
 
 		void

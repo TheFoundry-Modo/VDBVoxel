@@ -28,7 +28,7 @@
 #include <lxu_attributes.hpp>
 
 VoxelItemPart::VoxelItemPart ()
-	: m_gridNo (0), m_openVDBItem (0), m_extraFeatureNum (0)
+	: m_gridNo (0), m_f_size(0), m_openVDBItem (0), m_extraFeatureNum (0)
 {
 }
 
@@ -152,7 +152,7 @@ VoxelItemPart::loadOpenVDBModel (
 	/*
 	* generate required data into cache
 	*/
-	if (thisItemCache!=NULL) {
+	if (thisItemCache!= NULL) {
 		/*
 		 * cache hits
 		 */
@@ -170,6 +170,18 @@ VoxelItemPart::loadOpenVDBModel (
 		// Apply the transformation of the source item after the cache pass.
 		// So that, we do not have to invalidate OpenVDBItem object for each xfrm change.
 		thisItemCache->ApplyXFRM (creationInfo->xfrm);
+		OpenVDBItem* vdb = thisItemCache->cacheLoad ();
+
+		/*
+		 * Set current grid ID from current feature. Current grid ID is not a part of cache.
+		 */
+		if (vdb) {
+
+			unsigned	gridNo;
+
+			vdb->getFeatureID (creationInfo->cv_featureName, gridNo);
+			vdb->setCurrentGrid (gridNo);
+		}
 	}
 	else {
 		return LXe_FALSE;
@@ -188,7 +200,6 @@ VoxelItemPart::Sample (
 	LXtTableauBox		 box;
 	LxResult		 rc;
 	unsigned		 index, i, j, k;
-	float			 vec[3 * 4];
 	LXtVector		 position, normal;
 
 	if (!VoxelItem::IsValid(m_openVDBItem))
@@ -210,7 +221,11 @@ VoxelItemPart::Sample (
 	else if (LXx_FAIL(rc))
 		return rc;
 
+	if (m_f_size == 0)
+		return LXe_OK;
+
 	unsigned numQuads = m_openVDBItem->getMeshQuadNum (m_gridNo) / 4;
+	float *vec = new float[m_f_size];
 
 	for (i = 0; i < numQuads; i++) {
 		unsigned quadIndex[4];
@@ -221,12 +236,15 @@ VoxelItemPart::Sample (
 			m_openVDBItem->readPointNormals (m_gridNo, quadIndex[k], normal);
 			LXx_Normalize(normal);
 
-			for (j = 0; j < 3; j++) {
-				vec[j + m_f_pos[0]] = position[j];
-				vec[j + m_f_pos[1]] = 0.0f;
-				vec[j + m_f_pos[2]] = -normal[j];
-				vec[j + m_f_pos[3]] = 0.0f;
-			}
+			normal[0] = -normal[0];
+			normal[1] = -normal[1];
+			normal[2] = -normal[2];
+
+			LXx_VCPY (vec + m_f_pos[0], position);
+			LXx_VCPY (vec + m_f_pos[1], position);
+			LXx_VCPY (vec + m_f_pos[2], normal);
+			LXx_VCPY (vec + m_f_pos[3], normal);
+
 			// scalar extra features
 			for (j = 0; j < m_extraFeatureNum; j++)
 			{
@@ -241,6 +259,8 @@ VoxelItemPart::Sample (
 	for (j = 0; j< numQuads; j++) {
 		soup.Quad (4 * j, 4 * j + 1, 4 * j + 2, 4 * j + 3);
 	}
+
+	delete[] vec;
 
 	return LXe_OK;
 }
@@ -262,7 +282,15 @@ VoxelItemPart::SetVertex (
 	for (i = 0; i < TOTAL_FEATURE_COUNT; i++) {
 		FeatureByIndex (LXiTBLX_BASEFEATURE, i, &name);
 		rc = vrt_desc.Lookup (LXiTBLX_BASEFEATURE, name, &offset);
-		m_f_pos[i] = (rc == LXe_OK ? offset : -1);
+
+		if (rc == LXe_OK) {
+			m_f_pos[i] = offset;
+			m_f_size += 3; // BASEFEATURE is always a float3
+		}
+		else
+		{
+			m_f_pos[i] = -1;
+		}
 	}
 
 	if (rc == LXe_OK) {
@@ -270,6 +298,7 @@ VoxelItemPart::SetVertex (
 			FeatureByIndex (LXi_VMAP_WEIGHT, i, &name);
 			rc = vrt_desc.Lookup (LXi_VMAP_WEIGHT, name, &offset);
 			m_f_pos[i + TOTAL_FEATURE_COUNT] = offset;
+			m_f_size ++;
 		}
 	}
 	return LXe_OK;

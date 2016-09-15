@@ -193,6 +193,8 @@ class OpenVDBGrid
 	std::vector<int>		 m_pointAcc;		// number of referenced points
 	std::vector<unsigned>		 m_meshQuaIndices;	// quads
 	std::vector<unsigned>		 m_meshTriIndices;	// triangles
+	double				 m_meshAABB[6];		// bounding BOX;
+	bool				 m_meshAABBValid;	// mesh bounding box valid;
 
 	// world space bounding box
 	openvdb::math::BBox<openvdb::Vec3d> m_wbb;		// world space
@@ -333,6 +335,10 @@ class OpenVDBItem
 				return;
 			}
 		}
+		// load from an old fbx, we translate featurename
+		if (name == DEFAULT_FEATURE_OLD && DEFAULT_FEATURE_OLD != DEFAULT_FEATURE)
+			return getFeatureID (DEFAULT_FEATURE, gridID);
+
 		// feature not found
 		gridID = (unsigned)-1;
 	}
@@ -535,6 +541,12 @@ class OpenVDBItem
 	{
 		m_useHDDA = use;
 	}
+		void
+	setCurrentGrid (
+		unsigned		 gridNo)
+	{
+		m_refGrid = gridNo;
+	}
 	// source xfrm is applied to OpenVDBItem space to get 3D View space result.
 		void
 	applyTransfrom (
@@ -572,6 +584,7 @@ class OpenVDBItem
 	LXtMatrix4			 m_sourceXFRM;
 	LXtMatrix4			 m_sourceNXFRM;
 	LXtMatrix4			 m_sourceXFRMInv;
+	int				 m_slotTemperFuel[2]; // gridIDs for temperature and fuel, density is customizable.
 };
 
 /*

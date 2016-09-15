@@ -36,6 +36,17 @@ typedef boost::unordered_map<OpenVDBItem*, int> BoostMap;
 // A global map to record all active OpenVDBItems, used for verification for multi-thread.
 static BoostMap g_openVDBItems;
 
+bool iequals(const string& a, const string& b)
+{
+	unsigned int sz = a.size();
+	if (b.size() != sz)
+		return false;
+	for (unsigned int i = 0; i < sz; ++i)
+		if (tolower(a[i]) != tolower(b[i]))
+			return false;
+	return true;
+}
+
 OpenVDBItemPreLoader::OpenVDBItemPreLoader (
 	const std::string	&filename)
 {
@@ -99,6 +110,9 @@ OpenVDBItem::OpenVDBItem (
 	// for the voxel source interface
 	m_refGrid = 0;
 	m_useHDDA = 0;
+
+	m_slotTemperFuel[0] = -1;
+	m_slotTemperFuel[1] = -1;
 }
 
 OpenVDBItem::OpenVDBItem (
@@ -118,6 +132,9 @@ OpenVDBItem::OpenVDBItem (
 	// for the voxel source interface
 	m_refGrid = 0;
 	m_useHDDA = 0;
+
+	m_slotTemperFuel[0] = -1;
+	m_slotTemperFuel[1] = -1;
 }
 
 OpenVDBItem::OpenVDBItem (
@@ -145,15 +162,23 @@ OpenVDBItem::OpenVDBItem (
 		return;
 	}
 
-	GridBase::Ptr	 gridBase;
-	OpenVDBGrid	*vdbGridPtr;
+	m_slotTemperFuel[0] = -1;
+	m_slotTemperFuel[1] = -1;
 
-	for (io::File::NameIterator nameIter = file.beginName ();
-		nameIter != file.endName (); ++nameIter) {
+	GridBase::Ptr		 gridBase;
+	OpenVDBGrid		*vdbGridPtr;
+	io::File::NameIterator	 nameIter = file.beginName ();
+
+	for (int i = 0; nameIter != file.endName (); ++nameIter, ++i) {
 		gridBase = file.readGrid (nameIter.gridName ());
 		vdbGridPtr = new OpenVDBGrid (gridBase);
 		m_openVDBGrids.push_back (vdbGridPtr);
 		m_featureNameCache.push_back (vdbGridPtr->m_floatGridPtr->getName ());
+
+		if (iequals (vdbGridPtr->m_floatGridPtr->getName (), "temperature"))
+			m_slotTemperFuel[0] = i;
+		else if (iequals (vdbGridPtr->m_floatGridPtr->getName (), "fuel"))
+			m_slotTemperFuel[1] = i;
 	}
 
 	file.close ();
@@ -293,7 +318,15 @@ OpenVDBItem::voxel_Sample (
 	LXx_VCPY(pos_vs, pos);
 
 	MulMatrix(pos_vs, m_sourceXFRMInv);
-	m_openVDBGrids[index]->readData (pos_vs[0], pos_vs[1], pos_vs[2], *val);
+
+	// density is always the current feature
+	m_openVDBGrids[m_refGrid]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[0]);
+
+	if (m_slotTemperFuel[0] > -1)
+		m_openVDBGrids[m_slotTemperFuel[0]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[1]);
+	if (m_slotTemperFuel[1] > -1)
+		m_openVDBGrids[m_slotTemperFuel[1]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[2]);
+
 	return LXe_OK;
 }
 

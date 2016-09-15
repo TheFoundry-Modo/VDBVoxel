@@ -44,7 +44,7 @@ CLxAttributeDesc	 VoxelItemChannel::desc;
 */
 	LXtTagInfoDesc
 VoxelItemPackage::descInfo[] = {
-	{ LXsPKG_SUPERTYPE,		 LXsITYPE_LOCATOR },
+	{ LXsPKG_SUPERTYPE,		 "baseVolume" },
 	{ LXsPKG_GRAPHS,		 GRAPH_VOXELITEM },
 	{ LXsPKG_VOXEL_CHANNEL,		 CN_VDBOBJ },
 	{ LXsPKG_INSTANCEABLE_CHANNEL,	 CN_VDBOBJ },

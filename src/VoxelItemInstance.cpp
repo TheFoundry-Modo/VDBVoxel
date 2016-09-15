@@ -212,7 +212,7 @@ VoxelItemInstance::vitm_Draw (
 	ILxUnknownID		 itemChanRead,
 	ILxUnknownID		 viewStrokeDraw,
 	int			 selectionFlags,
-	LXtVector		 itemColor)
+	const LXtVector		 itemColor)
 {
 	CLxUser_ValueReference	 ref;
 	CLxUser_ChannelRead	 chanRead;
@@ -530,6 +530,19 @@ VoxelItemInstance::sil_ChannelValue (
 		int res = readChan.IValue(m_item, channel);
 		if (VoxelItem::IsValid(m_openVDBItem))
 			this->m_openVDBItem->setUseHDDA((res !=0));
+	}
+	else if (channel == item.ChannelIndex (CURRENT_FEATURE)) {
+
+		const char*		 name;
+
+		readChan.from (item);
+		readChan.String (item, channel, &name);
+
+		if (VoxelItem::IsValid(m_openVDBItem)) {
+			unsigned gridNo;
+			this->m_openVDBItem->getFeatureID (name, gridNo);
+			this->m_openVDBItem->setCurrentGrid (gridNo);
+		}
 	}
 }
 

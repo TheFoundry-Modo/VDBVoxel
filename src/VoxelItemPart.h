@@ -127,6 +127,7 @@ class VoxelItemPart
 	CLxUser_TableauVertex		 vrt_desc;
 	vector<int >			 m_f_pos;
 	int				 m_gridNo;
+	unsigned			 m_f_size;
 
 	// from the cache
 	OpenVDBItem			*m_openVDBItem;

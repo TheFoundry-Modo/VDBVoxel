@@ -80,7 +80,8 @@
 * The default feature for the voxel item created from input source item
 */
 
-#define DEFAULT_FEATURE		"default"
+#define DEFAULT_FEATURE		"density"
+#define DEFAULT_FEATURE_OLD	"default"
 
 /*
 * Settings for preferences.

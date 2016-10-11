@@ -123,6 +123,13 @@ class CParticleList
 		float vScale = 1)
 		: m_RadiusScale(rScale), m_VelocityScale(vScale) {}
 
+		void
+	reset()
+	{
+		m_ParticleList.clear();
+		m_RadiusScale = 1.0;
+		m_VelocityScale = 1.0;
+	}
 		inline void
 	add(
 		const CSample& sam)

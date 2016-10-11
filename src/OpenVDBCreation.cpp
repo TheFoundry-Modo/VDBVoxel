@@ -315,12 +315,16 @@ OpenVDBCreateFromParticle::Alloc (
 	VDBVoxelChannels	*creationInfo,
 	bool			&isValid)
 {
-	CLxUser_Scene		 scene;
-	CLxUser_ChannelRead	 readChan;
-	CLxUser_ValueReference	 ref;
+	return new OpenVDBItem (m_pa, creationInfo->voxelSize, creationInfo->cv_halfWidth, isValid);
+}
+	void
+OpenVDBCreateFromParticle::SampleParticles (
+	VDBVoxelChannels	*creationInfo,
+	CParticleList		&pa)
+{
+
 	CLxUser_TableauVertex	 vdesc;
 	CLxUser_TableauService	 tSrv;
-	CParticleList		 pa;
 	unsigned		 i;
 
 	// Use triangle soup to process the particle source.
@@ -337,8 +341,28 @@ OpenVDBCreateFromParticle::Alloc (
 	}
 	creationInfo->ptSrc.SetVertex (vdesc);
 	creationInfo->ptSrc.Sample (NULL, -1.0, soup); // call the triangleSoup
+}
 
-	return new OpenVDBItem (pa, creationInfo->voxelSize, creationInfo->cv_halfWidth, isValid);
+	VoxelItemKey
+OpenVDBCreateFromParticle::GenKey (
+	const VDBVoxelChannels	*creationInfo)
+{
+	VoxelItemKey keys;
+	unsigned key = VDBVoxelFNV::ComputeHashCode (*creationInfo, false);
+	keys.base = key;
+
+	unsigned pak = VDBVoxelFNV::ComputeHashCode (m_pa);
+	keys.mesh = pak;
+
+	return keys;
+}
+
+	void
+OpenVDBCreateFromParticle::Init(
+	VDBVoxelChannels *creationInfo)
+{
+	m_pa.reset();
+	SampleParticles (creationInfo, m_pa);
 }
 
 	void

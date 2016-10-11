@@ -101,3 +101,30 @@ VDBVoxelFNV::ComputeHashCode(
 
 	return( hash);
 }
+
+	unsigned
+VDBVoxelFNV::ComputeHashCode(
+	const CParticleList	&pa)
+{
+	unsigned hash = FNV_BASE;
+
+	Vec3R	 pos, vel;
+	Real	 rad;
+
+	for (size_t i = 0; i < pa.size(); i++) {
+
+		pa.getPosRadVel(i, pos, rad, vel);
+
+		hash = HashBitBlob <float>(hash, (float)pos[0]);
+		hash = HashBitBlob <float>(hash, (float)pos[1]);
+		hash = HashBitBlob <float>(hash, (float)pos[2]);
+
+		hash = HashBitBlob <float>(hash, (float)vel[0]);
+		hash = HashBitBlob <float>(hash, (float)vel[1]);
+		hash = HashBitBlob <float>(hash, (float)vel[2]);
+
+		hash = HashBitBlob <float>(hash, (float)rad);
+	}
+
+	return hash;
+}

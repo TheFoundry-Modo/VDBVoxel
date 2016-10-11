@@ -26,6 +26,7 @@
 #include "OpenVDBItem.h"
 #include "VoxelItemCache.h"
 #include "VDBVoxelItem.h"
+#include "SourceItem.h"
 
 /*
 *	Creator classes for creating OpenVDBItem from input source or file.
@@ -36,6 +37,9 @@ class OpenVDBCreator
     public:
 		virtual
 	~OpenVDBCreator (){}
+
+		virtual void
+	Init (VDBVoxelChannels	*creationInfo) {}
 
 		virtual OpenVDBItem *
 	Alloc (
@@ -104,10 +108,25 @@ class OpenVDBCreateFromParticle :
 	public OpenVDBCreator
 {
     public:
+		virtual void
+	Init (VDBVoxelChannels	*creationInfo);
+
 		virtual OpenVDBItem *
-	Alloc(
+	Alloc (
 		VDBVoxelChannels	*creationInfo,
 		bool			&isValid);
+
+		virtual VoxelItemKey
+	GenKey (
+		const VDBVoxelChannels	*creationInfo);
+
+    protected:
+		void
+	SampleParticles (
+		VDBVoxelChannels	*creationInfo,
+		CParticleList		&pa);
+
+	CParticleList			m_pa;
 };
 
 
@@ -145,13 +164,14 @@ class OpenVDBCreationStrategy
 
 		void
 	Destroy (
-		const VDBVoxelChannels	*info)
+		VDBVoxelChannels	*info)
 	{
 		VoxelItemCachePolicy	*cachePolicy = VoxelItemCachePolicy::getInstance ();
 		VoxelItemKey	keys;
 
 		// if key is not cached in info, we have to recompute it.
 		if (info->hashKey.base == 0) {
+			m_openVDBCreator->Init(info);
 			keys = m_openVDBCreator->GenKey(info);
 		} else {
 			keys.base = info->hashKey.base;
@@ -171,6 +191,7 @@ class OpenVDBCreationStrategy
 		bool			 isValid;
 		VoxelItemKey		keys;
 
+		m_openVDBCreator->Init(creationInfo);
 		keys = m_openVDBCreator->GenKey (creationInfo);
 		creationInfo->hashKey = keys;
 

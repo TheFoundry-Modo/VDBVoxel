@@ -46,6 +46,10 @@ public:
 		VDBVoxelChannels info,
 		bool		 isFile);
 
+		static unsigned
+	ComputeHashCode (
+		const CParticleList	&pa);
+
 };
 
 #endif

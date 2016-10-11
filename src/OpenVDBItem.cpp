@@ -319,13 +319,20 @@ OpenVDBItem::voxel_Sample (
 
 	MulMatrix(pos_vs, m_sourceXFRMInv);
 
-	// density is always the current feature
-	m_openVDBGrids[m_refGrid]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[0]);
+	// index could be a complex index (group of features) or a simple index (a feature)
+	if (LXiVOXELSAMPLE_DTF == index) {
+		// density is always the current feature
+		m_openVDBGrids[m_refGrid]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[0]);
 
-	if (m_slotTemperFuel[0] > -1)
-		m_openVDBGrids[m_slotTemperFuel[0]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[1]);
-	if (m_slotTemperFuel[1] > -1)
-		m_openVDBGrids[m_slotTemperFuel[1]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[2]);
+		if (m_slotTemperFuel[0] > -1)
+			m_openVDBGrids[m_slotTemperFuel[0]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[1]);
+		if (m_slotTemperFuel[1] > -1)
+			m_openVDBGrids[m_slotTemperFuel[1]]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[2]);
+	}
+	else {
+		index = LXxCLAMP (index, 0, m_openVDBGrids.size() - 1); // This should not be needed
+		m_openVDBGrids[index]->readData (pos_vs[0], pos_vs[1], pos_vs[2], val[0]);
+	}
 
 	return LXe_OK;
 }
